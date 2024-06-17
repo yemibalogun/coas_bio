@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Chief
+{% endblock %}
+
+{% block content %}
+    <h1>Add Chief</h1>
+    <div class="container">
+        <form method="POST">
+            {{ chief_form.hidden_tag() }}
+            <p>
+              {{ chief_form.rank.label }}<br>
+              {{ chief_form.rank(size=32) }}<br>
+              {% for error in chief_form.rank.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>
+              {{ chief_form.first_name.label }}<br>
+              {{ chief_form.first_name(size=32) }}<br>
+              {% for error in chief_form.first_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+      
+            <p>
+              {{ chief_form.middle_name.label }}<br>
+              {{ chief_form.middle_name(size=32) }}<br>
+              {% for error in chief_form.middle_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>
+              {{ chief_form.last_name.label }}<br>
+              {{ chief_form.last_name(size=32) }}<br>
+              {% for error in chief_form.last_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>
+              {{ chief_form.decorations.label }}<br>
+              {{ chief_form.decorations(size=32) }}<br>
+              {% for error in chief_form.decorations.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>
+              {{ chief_form.bio.label }}<br>
+              {{ chief_form.bio(cols=32, rows=4) }}<br>
+              {% for error in chief_form.bio.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            
+            <p>
+                {{ chief_form.date_took_office.label }}<br>
+                {{ chief_form.date_took_office(size=32) }}<br>
+                {% for error in chief_form.date_took_office.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </p>
+              <p>
+                {{ chief_form.date_left_office.label }}<br>
+                {{ chief_form.date_left_office(size=32) }}<br>
+                {% for error in chief_form.date_left_office.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </p>
+              <p>
+                {{ chief_form.dob.label }}<br>
+                {{ chief_form.dob(size=32) }}<br>
+                {% for error in chief_form.dob.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </p>
+              <p>
+                {{ chief_form.died.label }}<br>
+                {{ chief_form.died(size=32) }}<br>
+                {% for error in chief_form.died.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </p>
+            <p>{{ chief_form.submit() }}</p>
+          </form>
+    </div>
+    
+
+{% endblock %}
+

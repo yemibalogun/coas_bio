@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Chiefs of Army Staff
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Chiefs of Army Staff</h1>
+        <div style="display: flex; justify-content: space-around;" class="container">
+   
+                {% for chief in chiefs %}
+            <a href="#" style="text-decoration: none;">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ chief.picture }}" class="card-img-top" alt="{{ chief['first_name']}}">
+                <div class="card-body">
+                    <h5>{{ chief.rank }} </h5>
+                  <h5 class="card-title">{{ chief.first_name }} {{ chief.middle_name }} {{ chief.last_name }}</h5>
+                  <p>({{ chief.formatted_date_took_office }} - {{ chief.formatted_date_left_office }})</p>
+                  <p class="card-text">{{ chief.truncated_bio }}</p>
+                  
+                </div>
+            </div>
+            </a>
+            {% endfor %}
+            
+        </div>
+        
+    </div>
+    
+{% endblock %}

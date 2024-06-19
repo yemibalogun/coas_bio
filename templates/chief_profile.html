@@ -20,12 +20,13 @@ Chief Profile
                         <h6>{{ chief.rank }}</h6>
                         <h5 class="card-title">{{ chief.first_name }} {{ chief.middle_name }} {{ chief.last_name }} <span style="font-size: small;">{{ chief.decorations }}</span> </h5>
                         <p style="font-size: smaller;">({{ chief.formatted_date_took_office }} - {{ chief.formatted_date_left_office }})</p>
-                        <p class="card-text">{{ chief.bio }}</p>
+                        <hr>
+                        <p class="card-text">{{ chief.early_life }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <hr>
         <div class="profile-container d-flex justify-content-center flex-wrap">
             {% for picture in pictures %}
             <div style="margin: 1rem;" class="col-md-3"> <!-- This will be 30% wide on medium devices and above -->

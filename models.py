@@ -13,7 +13,15 @@ class Chief(db.Model):
     date_left_office = db.Column(db.Date)
     dob = db.Column(db.Date, nullable=False)
     died = db.Column(db.Date, nullable=True)
-    bio = db.Column(db.Text, nullable=False)
+    early_life = db.Column(db.Text, nullable=False)
+    career = db.Column(db.Text, nullable=False)
+    personal_life = db.Column(db.Text, nullable=True)
+    death_and_commemoration = db.Column(db.Text, nullable=True)
+    character_and_personality = db.Column(db.Text, nullable=True)
+    influences_and_inspirations = db.Column(db.Text, nullable=True)
+    quotes_and_anecdotes = db.Column(db.Text, nullable=True)
+    references_and_sources = db.Column(db.Text, nullable=True)
+    
     pictures = db.relationship('Picture', backref='chief', lazy=True)
 
     def __repr__(self):

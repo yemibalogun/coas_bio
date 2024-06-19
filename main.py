@@ -34,8 +34,8 @@ def save_picture(form_picture):
 
     return picture_fn
 
-def truncate_bio(bio, word_limit=10):
-    words = bio.split()
+def truncated_early_life(early_life, word_limit=10):
+    words = early_life.split()
     truncated = words[:word_limit]
     return ' '.join(truncated) + ('...' if len(words) > word_limit else '')
 
@@ -46,7 +46,7 @@ def format_date(date):
 def home():
     chiefs = Chief.query.all()
     for chief in chiefs:
-        chief.truncated_bio = truncate_bio(chief.bio)
+        chief.truncated_early_life = truncated_early_life(chief.early_life)
         chief.formatted_date_took_office = format_date(chief.date_took_office)
         chief.formatted_date_left_office = format_date(chief.date_left_office)
     return render_template('index.html', chiefs=chiefs)
@@ -54,7 +54,7 @@ def home():
 @app.route('/chief/<int:chief_id>')
 def chief_profile(chief_id):
     chief = Chief.query.get_or_404(chief_id)
-    chief.truncated_bio = truncate_bio(chief.bio)
+    chief.truncated_early_life = truncated_early_life(chief.bio)
     chief.formatted_date_took_office = format_date(chief.date_took_office)
     chief.formatted_date_left_office = format_date(chief.date_left_office)
     
@@ -73,7 +73,14 @@ def add_chief():
         date_left_office = chief_form.date_left_office.data
         dob = chief_form.dob.data
         died = chief_form.died.data
-        bio = chief_form.bio.data
+        early_life = chief_form.early_life.data
+        career = chief_form.career.data
+        personal_life = chief_form.personal_life.data
+        death_and_commemoration = chief_form.death_and_commemoration.data
+        character_and_personality = chief_form.character_and_personality.data
+        influences_and_inspirations = chief_form.influences_and_inspirations.data
+        quotes_and_anecdotes = chief_form.quotes_and_anecdotes.data
+        references_and_sources = chief_form.references_and_sources.data
 
         chief = Chief(
             rank=rank,
@@ -85,7 +92,14 @@ def add_chief():
             date_left_office=date_left_office,
             dob=dob,
             died=died,
-            bio=bio
+            early_life=early_life,
+            career=career,
+            personal_life=personal_life,
+            death_and_commemoration=death_and_commemoration,
+            character_and_personality=character_and_personality,
+            influences_and_inspirations=influences_and_inspirations,
+            quotes_and_anecdotes=quotes_and_anecdotes,
+            references_and_sources=references_and_sources
             )
         db.session.add(chief)
         db.session.commit()

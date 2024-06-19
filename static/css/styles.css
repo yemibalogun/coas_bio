@@ -48,13 +48,13 @@ body, html {
 }
 
 .glass-card:hover {
-    color: #fff;
+    color: #F8F8FF;
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
     0 12.5px 10px rgba(0, 0, 0, 0.06);
-  transform: translate(-5px, -5px); /* Move 5 pixels NW on hover */
-  transition: .3s;
+    transform: translate(-5px, -5px); /* Move 5 pixels NW on hover */
+    transition: .3s;
 }
 
 /* Modal styling */
@@ -97,7 +97,7 @@ body, html {
 .modal-content {
     background: rgba(0, 0, 0, 0.779) !important;
     border: 1px solid rgba(255, 255, 255, 0.021);
-    color: #fff !important;
+    color: #F8F8FF !important;
     padding: 1rem;
     margin: 0;
     border-radius: 15px;
@@ -133,7 +133,7 @@ body, html {
 }
 
 .glass-card a:hover {
-    color: #fff;
+    color: #F8F8FF;
 }
 
 .glass-card img {
@@ -173,10 +173,29 @@ body, html {
 
 .profile-container img {
     border-radius: 5px;
+    filter: grayscale(30%); 
+    
+}
+
+.profile-container img:hover {
+    border-radius: 5px;
     filter: grayscale(0%); 
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
     0 12.5px 10px rgba(0, 0, 0, 0.06);
+    transform: translate(-5px, -5px); /* Move 5 pixels NW on hover */
+    transition: .3s;
+}
+
+.profile-container hr {
+    width: 70%;
+    margin: 1rem auto;
+}
+
+.bio-form .row {
+    color: #d6d6d6;
+    margin: 1rem;
+    padding: 1rem;
 }
 

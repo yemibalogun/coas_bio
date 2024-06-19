@@ -18,10 +18,62 @@ Chief Profile
                 <div class="profile-card">
                     <div class="card-body">
                         <h6>{{ chief.rank }}</h6>
-                        <h5 class="card-title">{{ chief.first_name }} {{ chief.middle_name }} {{ chief.last_name }} <span style="font-size: small;">{{ chief.decorations }}</span> </h5>
+                        <h4 class="card-title">{{ chief.first_name.upper() }} {{ chief.middle_name.upper() }} {{ chief.last_name.upper() }} <br><span style="font-size: small;">{{ chief.decorations }}</span> </h4>
                         <p style="font-size: smaller;">({{ chief.formatted_date_took_office }} - {{ chief.formatted_date_left_office }})</p>
                         <hr>
+                        {% if chief.early_life %}
+                        <h6>Early life</h6>
                         <p class="card-text">{{ chief.early_life }}</p>
+                        <br>
+                        {% endif %}
+
+                        {% if chief.career %}
+                        <h6>Career</h6>
+                        <p class="card-text">{{ chief.career }}</p>
+                        <br>
+                        {% endif %}
+
+                        {% if chief.personal_life %}
+                        <h6>Personal life</h6>
+                        <p class="card-text">{{ chief.personal_life }}</p>
+                        <br>
+                        {% endif %}
+
+                        {% if chief.death_and_commemoration %}
+                        <h6>Death and Commemoration </h6>
+                        <p class="card-text">{{ chief.death_and_commemoration }}</p>
+                        <br>
+                        {% endif %}
+
+                        {% if chief.death_and_commemoration %}
+                        <h6>Death and commemoration</h6>
+                        <p class="card-text">{{ chief.death_and_commemoration }}</p>
+                        <br>
+                        {% endif %}
+
+                        {% if chief.character_and_personality %}
+                        <h6>Character and personality</h6>
+                        <p class="card-text">{{ chief.character_and_personality }}</p>
+                        <br>
+                        {% endif %}
+
+                        {% if chief.influences_and_inspirations %}
+                        <h6>Influences and inspiration</h6>
+                        <p class="card-text">{{ chief.influences_and_inspirations }}</p>
+                        <br>
+                        {% endif %}
+
+                        {% if chief.quotes_and_anecdotes %}
+                        <h6>Quotes and anecdotes</h6>
+                        <p class="card-text">{{ chief.quotes_and_anecdotes }}</p>
+                        <br>
+                        {% endif %}
+
+                        {% if chief.references_and_sources %}
+                        <h6>References and sources</h6>
+                        <p class="card-text">{{ chief.references_and_sources }}</p>
+                        <br>
+                        {% endif %}
                     </div>
                 </div>
             </div>

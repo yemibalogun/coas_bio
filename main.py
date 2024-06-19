@@ -54,7 +54,7 @@ def home():
 @app.route('/chief/<int:chief_id>')
 def chief_profile(chief_id):
     chief = Chief.query.get_or_404(chief_id)
-    chief.truncated_early_life = truncated_early_life(chief.bio)
+    chief.truncated_early_life = truncated_early_life(chief.early_life)
     chief.formatted_date_took_office = format_date(chief.date_took_office)
     chief.formatted_date_left_office = format_date(chief.date_left_office)
     

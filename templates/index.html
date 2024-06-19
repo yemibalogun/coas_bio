@@ -11,21 +11,21 @@ Chiefs of Army Staff
     <div class="content">
         <div class="d-flex justify-content-center flex-wrap" id="chiefs-container">
             {% for chief in chiefs %}
-            {% for picture in chief.pictures %}
-            {% if picture.title == "Profile pix" %}
             <div class="card glass-card m-2 chief-card" data-chief-id="{{ chief.id }}">
                 <a href="#" class="card-link" style="text-decoration: none;">
-                <img src="{{ url_for('static', filename='images/' ~ picture.url) }}" class="card-img-top" alt="{{ chief.first_name }}">
-                <div class="card-body">
+                    {% for picture in chief.pictures %}
+                    {% if picture.title == "Profile pix" %}
+                    <img src="{{ url_for('static', filename='images/' ~ picture.url) }}" class="card-img-top" alt="{{ chief.first_name }}">
+                    {% endif %}
+                    {% endfor %}
+                    <div class="card-body">
                     <h6>{{ chief.rank }}</h6>
-                  <h5 class="card-title">{{ chief.first_name }} {{ chief.middle_name }} {{ chief.last_name }} <span style="font-size: small;">{{ chief.decorations }}</span> </h5>
+                  <h5 class="card-title">{{ chief.first_name }} {{ chief.middle_name }} {{ chief.last_name }} <br><span style="font-size: small;">{{ chief.decorations }}</span> </h5>
                   <p style="font-size: smaller;">({{ chief.formatted_date_took_office }} - {{ chief.formatted_date_left_office }})</p>
                   <p class="card-text">{{ chief.truncated_early_life }}</p>
                 </div>
                 </a>
             </div>
-            {% endif %}
-            {% endfor %}
             {% endfor %}
         </div>
     </div>

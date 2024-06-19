@@ -5,27 +5,36 @@ Chiefs of Army Staff
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Chiefs of Army Staff</h1>
-        <div style="display: flex; justify-content: space-around;" class="container">
-   
-                {% for chief in chiefs %}
-            <a href="#" style="text-decoration: none;">
-            <div class="card" style="width: 18rem;">
-                <img src="{{ chief.picture }}" class="card-img-top" alt="{{ chief['first_name']}}">
-                <div class="card-body">
-                    <h5>{{ chief.rank }} </h5>
-                  <h5 class="card-title">{{ chief.first_name }} {{ chief.middle_name }} {{ chief.last_name }}</h5>
-                  <p>({{ chief.formatted_date_took_office }} - {{ chief.formatted_date_left_office }})</p>
-                  <p class="card-text">{{ chief.truncated_bio }}</p>
-                  
-                </div>
-            </div>
-            </a>
-            {% endfor %}
-            
-        </div>
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
+    <h1 style="color: aliceblue; margin: 1rem auto; padding: 1rem;" class="text-center glass-card">Chiefs of Army Staff</h1>
+    <div class="content">
         
+        <div class="d-flex justify-content-center flex-wrap" id="chiefs-container">
+            {% for chief in chiefs %}
+            {% for picture in chief.pictures %}
+            {% if picture.title == "Profile pix" %}
+            <div class="card glass-card m-2 chief-card" data-chief-id="{{ chief.id }}">
+                <a href="#" class="card-link" style="text-decoration: none;">
+                <img src="{{ url_for('static', filename='images/' ~ picture.url) }}" class="card-img-top" alt="{{ chief.first_name }}">
+                <div class="card-body">
+                    <h6>{{ chief.rank }}</h6>
+                  <h5 class="card-title">{{ chief.first_name }} {{ chief.middle_name }} {{ chief.last_name }} <span style="font-size: small;">{{ chief.decorations }}</span> </h5>
+                  <p style="font-size: smaller;">({{ chief.formatted_date_took_office }} - {{ chief.formatted_date_left_office }})</p>
+                  <p class="card-text">{{ chief.truncated_bio }}</p>
+                </div>
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
     </div>
     
+    <!-- Modal Container -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <!-- Profile content will be dynamically loaded here -->
+        </div>
+    </div>
 {% endblock %}

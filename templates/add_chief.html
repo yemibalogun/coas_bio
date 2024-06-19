@@ -52,8 +52,8 @@ Add Chief
                 <span style="color: red;">[{{ error }}]</span>
               {% endfor %}
             </p>
-            
-            <p>
+            <div class="rol">
+              <p>
                 {{ chief_form.date_took_office.label }}<br>
                 {{ chief_form.date_took_office(size=32) }}<br>
                 {% for error in chief_form.date_took_office.errors %}
@@ -81,6 +81,8 @@ Add Chief
                   <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
               </p>
+            </div>
+            
             <p>{{ chief_form.submit() }}</p>
           </form>
     </div>

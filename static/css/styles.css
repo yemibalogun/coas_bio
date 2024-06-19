@@ -1,0 +1,182 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* General styling for the blurred background and glass effect */
+.bg-image {
+    background-image: url('../images/background.gif');
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    z-index: -1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.813);
+    z-index: -1;
+}
+
+.overlay.active {
+    opacity: 1;
+}
+
+/* Glass card styling */
+.glass-card {
+    background: rgba(255, 255, 255, 0.2); /* Adjust the transparency here */
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 0.5rem;
+    width: 18rem;
+    min-width: fit-content;
+    color: #eaeaea; /* Optional: Ensure text is readable */
+    transition: .3s ease;
+}
+
+.glass-card:hover {
+    color: #fff;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06);
+  transform: translate(-5px, -5px); /* Move 5 pixels NW on hover */
+  transition: .3s;
+}
+
+/* Modal styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 20; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;  
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: flex; /* Show the modal */
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+}
+
+/* Ensure smooth transition for modal appearance */
+#profile-modal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+#profile-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: rgba(0, 0, 0, 0.779) !important;
+    border: 1px solid rgba(255, 255, 255, 0.021);
+    color: #fff !important;
+    padding: 1rem;
+    margin: 0;
+    border-radius: 15px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+.modal.active .modal-content {
+    transform: translateY(0); /* Move to original position */
+}
+
+.grayscale-img {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease-in-out;
+}
+
+.grayscale-img:hover {
+    filter: grayscale(0%);
+}
+
+.glass-card a {
+    text-decoration: none;
+    color: #d6d6d6;
+    transition: .3s ease;
+}
+
+.glass-card a:hover {
+    color: #fff;
+}
+
+.glass-card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+/* static/css/styles.css */
+
+
+.card-img-top {
+    filter: grayscale(70%); /* Initially grayscale the image */
+    transition: filter 0.3s ease; /* Smooth transition effect */
+    width: 100%; /* Ensure the image fits within the card */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 100%; /* Ensure the image does not exceed card width */
+}
+
+.card:hover .card-img-top {
+    filter: grayscale(0%); /* Remove grayscale on hover */
+}
+
+.card {
+    width: 18rem;
+    background-color: rgba(84, 84, 84, 0.6) !important; /* Semi-transparent white */
+    transition: transform 0.5s ease-in-out;
+}
+
+.card.hovered {
+    transform: translateX(-100%);
+}
+
+.profile-card {
+    text-align: justify;
+    max-width: 100%;
+}
+
+.profile-container img {
+    border-radius: 5px;
+    filter: grayscale(0%); 
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06);
+}
+

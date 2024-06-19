@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
 {% block title %}
-Add Picture
+Upload Picture
 {% endblock %}
 
 {% block content %}
-    <h1>Add Picture</h1>
-    <form method="POST">
+<div class="container">
+  <h1>Upload Picture</h1>
+    <form method="POST" enctype="multipart/form-data">
       {{ picture_form.hidden_tag() }}
       <p>
-        {{ picture_form.url.label }}<br>
-        {{ picture_form.url(size=64) }}<br>
-        {% for error in picture_form.url.errors %}
+        {{ picture_form.picture.label }}<br>
+        {{ picture_form.picture(class="form-control-file") }}<br>
+        {% for error in picture_form.picture.errors %}
           <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
       </p>
@@ -31,4 +32,6 @@ Add Picture
       </p>
       <p>{{ picture_form.submit() }}</p>
     </form>
+</div>
+    
 {% endblock %}

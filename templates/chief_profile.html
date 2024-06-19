@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+Chief Profile
+{% endblock %}
+
+{% block content %}
+    <div class="profile-container d-flex justify-content-center flex-wrap">
+        <div class="row">
+            <div class="col-md-3"> <!-- This will be 30% wide on medium devices and above -->
+                {% for picture in pictures %}
+                {% if picture.title == 'Profile pix' %}
+                <img src="{{ url_for('static', filename='images/' ~ picture.url) }}" class="card-img-top" alt="{{ chief.first_name }}">
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-md-9"> <!-- This will be 70% wide on medium devices and above -->
+                <div class="profile-card">
+                    <div class="card-body">
+                        <h6>{{ chief.rank }}</h6>
+                        <h5 class="card-title">{{ chief.first_name }} {{ chief.middle_name }} {{ chief.last_name }} <span style="font-size: small;">{{ chief.decorations }}</span> </h5>
+                        <p style="font-size: smaller;">({{ chief.formatted_date_took_office }} - {{ chief.formatted_date_left_office }})</p>
+                        <p class="card-text">{{ chief.bio }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-container d-flex justify-content-center flex-wrap">
+            {% for picture in pictures %}
+            <div style="margin: 1rem;" class="col-md-3"> <!-- This will be 30% wide on medium devices and above -->
+                <img src="{{ url_for('static', filename='images/' ~ picture.url) }}" class="card-img-top" alt="{{ chief.first_name }}">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

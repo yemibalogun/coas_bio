@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, URLField, IntegerField, DateField
-from wtforms.validators import DataRequired, URL, NumberRange
+from wtforms import StringField, TextAreaField, SubmitField, FileField, IntegerField, DateField
+from wtforms.validators import DataRequired
 
 class ChiefForm(FlaskForm):
     rank = StringField('Rank', validators=[DataRequired()])
@@ -16,9 +16,9 @@ class ChiefForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class PictureForm(FlaskForm):
-    url = URLField('URL', validators=[DataRequired(), URL()])
+    chief_id = IntegerField('Chief ID', validators=[DataRequired()])
     title = StringField('Title', validators=[DataRequired()])
-    chief_id = IntegerField('Chief ID', validators=[DataRequired(), NumberRange(min=1)])
-    submit = SubmitField('Submit')
+    picture = FileField('Upload Picture', validators=[DataRequired()])
+    submit = SubmitField('Upload Picture')
 
     

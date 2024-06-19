@@ -1,18 +1,43 @@
-from flask import Flask, render_template, url_for, flash, redirect
+from flask import Flask, render_template, url_for, flash, redirect, current_app
 from config import Config
+from werkzeug.utils import secure_filename
+from PIL import Image
 from models import Chief, db, Picture
 from forms import ChiefForm, PictureForm
 from datetime import datetime
+import os
+import secrets
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 db.init_app(app)
 
-def truncate_bio(bio, lines=1):
-    bio_lines = bio.split('\n')
-    truncated = bio_lines[:lines]
-    return '\n'.join(truncated) + ('...' if len(bio_lines) > lines else '')
+def resize_image(image_path, output_size):
+    """Resize the image to the specified output size."""
+    with Image.open(image_path) as img:
+        img.thumbnail(output_size)
+        img.save(image_path)
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(current_app.root_path, 'static/images', picture_fn)
+
+    # Resize image
+    output_size = (280, 280)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
+
+def truncate_bio(bio, word_limit=10):
+    words = bio.split()
+    truncated = words[:word_limit]
+    return ' '.join(truncated) + ('...' if len(words) > word_limit else '')
 
 def format_date(date):
     return date.strftime('%d %B %Y') if date else None
@@ -25,6 +50,15 @@ def home():
         chief.formatted_date_took_office = format_date(chief.date_took_office)
         chief.formatted_date_left_office = format_date(chief.date_left_office)
     return render_template('index.html', chiefs=chiefs)
+
+@app.route('/chief/<int:chief_id>')
+def chief_profile(chief_id):
+    chief = Chief.query.get_or_404(chief_id)
+    chief.truncated_bio = truncate_bio(chief.bio)
+    chief.formatted_date_took_office = format_date(chief.date_took_office)
+    chief.formatted_date_left_office = format_date(chief.date_left_office)
+    
+    return render_template('chief_profile.html', chief=chief, pictures=chief.pictures)
 
 @app.route('/add_chief', methods=['GET', 'POST'])
 def add_chief():
@@ -63,17 +97,15 @@ def add_chief():
 def add_picture():
     picture_form = PictureForm()
     if picture_form.validate_on_submit():
-        url = picture_form.url.data
-        title = picture_form.title.data
-        chief_id = picture_form.chief_id.data
+        picture_file = save_picture(picture_form.picture.data)
         picture = Picture(
-            url=url,
-            title=title,
-            chief_id = chief_id
-        )
+            chief_id=picture_form.chief_id.data, 
+            title=picture_form.title.data, 
+            url=picture_file
+            )
         db.session.add(picture)
         db.session.commit()
-        flash('Picture added successfully!')
+        flash('Your picture has been uploaded!', 'success')
         return redirect(url_for('home'))
     return render_template('add_picture.html', picture_form=picture_form)
 
